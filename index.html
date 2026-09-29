@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- TODO: replace with the paper title and a one-sentence summary -->
+  <title>R2S2R Grounding</title>
+  <meta name="description" content="Project page for the CoRL 2026 Workshop paper: R2S2R Grounding.">
+
+  <!-- Social previews (TODO: add static/images/teaser.jpg, ~1200x630) -->
+  <meta property="og:title" content="R2S2R Grounding">
+  <meta property="og:description" content="Project page for the CoRL 2026 Workshop paper.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://industrialnext.github.io/r2s2r-grounding/">
+  <meta property="og:image" content="https://industrialnext.github.io/r2s2r-grounding/static/images/teaser.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <p class="venue">CoRL 2026 Workshop</p>
+    <!-- TODO: full paper title -->
+    <h1>R2S2R Grounding</h1>
+
+    <!-- TODO: authors, affiliations, links to personal pages -->
+    <p class="authors">
+      <a href="#">Author One</a><sup>1</sup>,
+      <a href="#">Author Two</a><sup>1</sup>,
+      <a href="#">Author Three</a><sup>2</sup>
+    </p>
+    <p class="affiliations">
+      <sup>1</sup>Affiliation One &nbsp;&middot;&nbsp; <sup>2</sup>Affiliation Two
+    </p>
+
+    <!-- TODO: fill in links; remove any that don't apply -->
+    <nav class="links">
+      <a class="btn" href="#">Paper</a>
+      <a class="btn" href="#">arXiv</a>
+      <a class="btn" href="#">Video</a>
+      <a class="btn" href="#">Code</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Teaser: drop a video at static/videos/teaser.mp4, or swap for an <img> -->
+  <section class="teaser">
+    <figure>
+      <video autoplay muted loop playsinline poster="static/images/teaser.jpg">
+        <source src="static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      <figcaption>TODO: one-line teaser caption.</figcaption>
+    </figure>
+  </section>
+
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p>
+      TODO: paste the abstract here.
+    </p>
+  </section>
+
+  <section id="method">
+    <h2>Method</h2>
+    <figure>
+      <img src="static/images/method.png" alt="Method overview">
+      <figcaption>TODO: method figure caption.</figcaption>
+    </figure>
+    <p>
+      TODO: short description of the approach.
+    </p>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2>
+    <div class="grid">
+      <figure>
+        <video controls muted playsinline preload="metadata">
+          <source src="static/videos/result1.mp4" type="video/mp4">
+        </video>
+        <figcaption>TODO: result 1</figcaption>
+      </figure>
+      <figure>
+        <video controls muted playsinline preload="metadata">
+          <source src="static/videos/result2.mp4" type="video/mp4">
+        </video>
+        <figcaption>TODO: result 2</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <div class="bibtex">
+      <button class="copy" type="button" aria-label="Copy BibTeX">Copy</button>
+<pre><code id="bibtex-code">@inproceedings{TODO2026r2s2r,
+  title     = {TODO},
+  author    = {TODO},
+  booktitle = {CoRL 2026 Workshop},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 the authors.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.bibtex .copy').addEventListener('click', function (e) {
+    var btn = e.currentTarget;
+    var text = document.getElementById('bibtex-code').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
