@@ -1,8 +1,7 @@
 # r2s2r-grounding
 
 <!-- Project page for CoRL 2026 Workshop Paper, served at -->
-Project page, served at
-https://industrialnext.github.io/r2s2r-grounding/
+Project page
 
 ## Editing
 
