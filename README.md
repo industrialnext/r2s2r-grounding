@@ -1,6 +1,6 @@
 # r2s2r-grounding
 
-Project page for *Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training*, served at https://samuelliu12.github.io/r2s2r-grounding/
+Project page for *Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training*, served at https://industrialnext.github.io/r2s2r-grounding/
 
 ## Editing
 
