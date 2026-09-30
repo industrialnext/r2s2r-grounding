@@ -1,7 +1,6 @@
 # r2s2r-grounding
 
-<!-- Project page for CoRL 2026 Workshop Paper, served at -->
-Project page
+Project page for *Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training*, served at https://samuelliu12.github.io/r2s2r-grounding/
 
 ## Editing
 
@@ -9,10 +8,19 @@ Plain static HTML — no build step.
 
 - `index.html` — page content (search for `TODO`)
 - `static/css/style.css` — styles
-- `static/images/` — `teaser.jpg` (also used as social preview), `method.png`
-- `static/videos/` — `teaser.mp4`, `result1.mp4`, `result2.mp4`
+- `static/images/fig1.jpg` — Fig. 1 overview (also used as social preview)
+- `static/arxiv-paper.pdf` — paper PDF linked from the header
+- `static/videos/` — empty for now
 
 Preview locally: `python3 -m http.server` then open http://localhost:8000
+
+To add a paper figure, render the PDF with `qlmanage -t -s 3000 -o . figure.pdf`, then convert it with `sips -s format jpeg -s formatOptions 85 --resampleWidth 2400 figure.pdf.png --out static/images/<name>.jpg`.
+
+## Later
+
+- [ ] Swap the "arXiv (coming soon)" pill for the real `arxiv.org/abs/...` link, and add `eprint` to the BibTeX
+- [ ] Results figures (commented-out `#results` section in `index.html`)
+- [ ] Video (commented-out `#video` section)
 
 ## Deployment
 

@@ -4,18 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- TODO: replace with the paper title and a one-sentence summary -->
-  <title>R2S2R Grounding</title>
-  <!-- <meta name="description" content="Project page for the CoRL 2026 Workshop paper: R2S2R Grounding."> -->
-  <meta name="description" content="Project page for R2S2R Grounding.">
+  <title>Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training</title>
+  <meta name="description" content="We separate simulation grounding into world grounding and behavior grounding, and study how each affects real2sim2real co-training for dynamic dexterous pick-and-sort.">
 
-  <!-- Social previews (TODO: add static/images/teaser.jpg, ~1200x630) -->
-  <meta property="og:title" content="R2S2R Grounding">
-  <!-- <meta property="og:description" content="Project page for the CoRL 2026 Workshop paper."> -->
-  <meta property="og:description" content="Project page for R2S2R Grounding.">
+  <meta property="og:title" content="Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training">
+  <meta property="og:description" content="We separate simulation grounding into world grounding and behavior grounding, and study how each affects real2sim2real co-training for dynamic dexterous pick-and-sort.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://samuelliu12.github.io/r2s2r-grounding/">
-  <meta property="og:image" content="https://samuelliu12.github.io/r2s2r-grounding/static/images/teaser.jpg">
+  <meta property="og:image" content="https://samuelliu12.github.io/r2s2r-grounding/static/images/fig1.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,87 +23,92 @@
 
 <header class="hero">
   <div class="container">
-    <!-- <p class="venue">CoRL 2026 Workshop</p> -->
-    <!-- TODO: full paper title -->
-    <h1>R2S2R Grounding</h1>
+    <h1>Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training</h1>
 
-    <!-- TODO: links to personal pages -->
     <p class="authors">
-      <a href="#">Samuel Liu</a><sup>1,2,*</sup>,
-      <a href="#">Youngsun Kim</a><sup>2</sup>,
-      <a href="#">Gilwoo Lee</a><sup>2</sup>
+      Samuel Liu<sup>1,2,*</sup>,
+      Youngsun Kim<sup>2</sup>,
+      Martin Matak<sup>2</sup>,
+      Gilwoo Lee<sup>2</sup>
     </p>
     <p class="affiliations">
       <sup>1</sup>University of Cambridge &nbsp;&middot;&nbsp; <sup>2</sup>Industrial Next
-      <br><sup>*</sup>Corresponding author
+      <br><sup>*</sup>Corresponding author: <a href="mailto:syl63@cam.ac.uk">syl63@cam.ac.uk</a>
     </p>
 
-    <!-- TODO: fill in links; remove any that don't apply -->
     <nav class="links">
-      <a class="btn" href="#">arXiv</a>
-      <a class="btn" href="#">Video</a>
-      <a class="btn" href="#">Code</a>
+      <a class="btn" href="static/arxiv-paper.pdf">Paper (PDF)</a>
+      <!-- TODO: once public, replace with <a class="btn" href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a> -->
+      <span class="btn pending" aria-disabled="true">arXiv (coming soon)</span>
     </nav>
   </div>
 </header>
 
-<main class="container">
+<section class="teaser wide">
+  <figure class="fig-light">
+    <img src="static/images/fig1.jpg" alt="Overview: simulated data varied along world and behavior grounding axes, co-trained with real teleoperation demonstrations, and a schematic latent space of rollout trajectories.">
+  </figure>
+  <p class="caption">
+    We vary simulated data along two axes, world grounding and behavior grounding, giving four
+    simulated datasets. Each is combined with 100 real teleoperation demonstrations to co-train
+    policies from scratch or post-train foundation models. Hypothesized mechanism (schematic):
+    a deployed policy imitates the real demonstrations in states they cover, relies on simulated
+    behavior elsewhere, and returns to real-like states once it can.
+  </p>
+</section>
 
-  <!-- Teaser: drop a video at static/videos/teaser.mp4, or swap for an <img> -->
-  <section class="teaser">
-    <figure>
-      <video autoplay muted loop playsinline poster="static/images/teaser.jpg">
-        <source src="static/videos/teaser.mp4" type="video/mp4">
-      </video>
-      <figcaption>TODO: one-line teaser caption.</figcaption>
-    </figure>
-  </section>
+<main class="container">
 
   <section id="abstract">
     <h2>Abstract</h2>
     <p>
-      TODO: paste the abstract here.
+      Simulation can expand scarce real demonstrations for co-training, yet how world fidelity and
+      similarity to human behavior affect policy performance remains unclear. We distinguish
+      <strong>world grounding</strong>, which aligns simulation with the real system, and
+      <strong>behavior grounding</strong>, which aligns simulated trajectories with human motion.
+      We build a real2sim2real pipeline that varies these axes independently to generate data for
+      co-training. On a dynamic dexterous pick-and-sort task, fully grounded co-training raises
+      success from 52% to 86%; averaged across configurations, world grounding improves success by
+      18 percentage points and behavior grounding by 10. Deployed policies behave like a
+      <em>mixture of real-derived and simulation-derived policies</em>, imitating real
+      demonstrations in covered states and relying on simulated behavior elsewhere, which we
+      examine through latent-space analysis. Together, these results suggest complementary roles:
+      world grounding lets policies use simulated experience beyond real-data coverage, while
+      behavior grounding matters mainly when world grounding is imperfect. Grounded simulation
+      remains beneficial when co-training foundation models.
     </p>
   </section>
 
-  <section id="method">
-    <h2>Method</h2>
+  <!-- Video: add static/videos/<name>.mp4, then uncomment.
+  <section id="video">
+    <h2>Video</h2>
     <figure>
-      <img src="static/images/method.png" alt="Method overview">
-      <figcaption>TODO: method figure caption.</figcaption>
+      <video controls muted playsinline preload="metadata">
+        <source src="static/videos/TODO.mp4" type="video/mp4">
+      </video>
     </figure>
-    <p>
-      TODO: short description of the approach.
-    </p>
   </section>
+  -->
 
+  <!-- Results: add figures to static/images/ (e.g. rendered from the paper's figures/*.pdf), then uncomment.
   <section id="results">
     <h2>Results</h2>
-    <div class="grid">
-      <figure>
-        <video controls muted playsinline preload="metadata">
-          <source src="static/videos/result1.mp4" type="video/mp4">
-        </video>
-        <figcaption>TODO: result 1</figcaption>
-      </figure>
-      <figure>
-        <video controls muted playsinline preload="metadata">
-          <source src="static/videos/result2.mp4" type="video/mp4">
-        </video>
-        <figcaption>TODO: result 2</figcaption>
-      </figure>
-    </div>
+    <figure>
+      <img src="static/images/TODO.jpg" alt="TODO">
+      <figcaption>TODO</figcaption>
+    </figure>
   </section>
+  -->
 
   <section id="bibtex">
     <h2>BibTeX</h2>
     <div class="bibtex">
       <button class="copy" type="button" aria-label="Copy BibTeX">Copy</button>
-<pre><code id="bibtex-code">@inproceedings{liu2026r2s2r,
-  title     = {TODO},
-  author    = {Liu, Samuel and Kim, Youngsun and Lee, Gilwoo},
-<!--  booktitle = {CoRL 2026 Workshop},
--->  year      = {2026}
+<!-- TODO: once on arXiv, add: eprint = {XXXX.XXXXX}, archivePrefix = {arXiv}, primaryClass = {cs.RO} -->
+<pre><code id="bibtex-code">@misc{liu2026getting,
+  title  = {Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training},
+  author = {Liu, Samuel and Kim, Youngsun and Matak, Martin and Lee, Gilwoo},
+  year   = {2026}
 }</code></pre>
     </div>
   </section>

@@ -85,6 +85,13 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
 }
 .btn:hover { opacity: 0.85; text-decoration: none; }
+.btn.pending {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  cursor: default;
+}
+.btn.pending:hover { opacity: 1; }
 
 /* Sections */
 section { padding: 28px 0; }
@@ -112,6 +119,34 @@ figcaption {
 }
 
 .teaser { padding-top: 8px; }
+
+/* Wider than the text column, for dense figures */
+.wide {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.wide .caption {
+  max-width: var(--maxw);
+  margin: 12px auto 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* White card so figures with white backgrounds sit cleanly in dark mode */
+figure.fig-light {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+figure.fig-light img {
+  border-radius: 0;
+  background: #ffffff;
+}
 
 .grid {
   display: grid;
