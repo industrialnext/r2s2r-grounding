@@ -20,7 +20,7 @@ To add a paper figure, render the PDF with `qlmanage -t -s 3000 -o . figure.pdf`
 
 - [ ] Swap the "arXiv (coming soon)" pill for the real `arxiv.org/abs/...` link, and add `eprint` to the BibTeX
 - [ ] Results figures (commented-out `#results` section in `index.html`)
-- [ ] Video (commented-out `#video` section)
+- [x] Video (YouTube embed, unlisted: https://youtu.be/5Gvt4kh4AHc)
 
 ## Deployment
 
