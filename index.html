@@ -21,9 +21,14 @@
 </head>
 <body>
 
-<header class="hero">
+<header class="hero has-video">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto"
+         poster="static/images/posters/hero-loop.jpg" aria-hidden="true" tabindex="-1">
+    <source src="static/videos/hero-loop.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container">
-    <h1>Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co-Training</h1>
+    <h1>Getting Out and Getting Back: World and Behavior Grounding in Real2Sim2Real Co&#8209;Training</h1>
 
     <p class="authors">
       Samuel Liu<sup>1,2,*</sup>,
@@ -38,7 +43,7 @@
 
     <nav class="links">
       <a class="btn" href="static/arxiv-paper.pdf">Paper (PDF)</a>
-      <a class="btn" href="https://youtu.be/5Gvt4kh4AHc">Video</a>
+      <a class="btn" href="#video">Video</a>
       <!-- TODO: once public, replace with <a class="btn" href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a> -->
       <span class="btn pending" aria-disabled="true">arXiv (coming soon)</span>
     </nav>
@@ -92,15 +97,217 @@
     </div>
   </section>
 
-  <!-- Results: add figures to static/images/ (e.g. rendered from the paper's figures/*.pdf), then uncomment.
-  <section id="results">
-    <h2>Results</h2>
-    <figure>
-      <img src="static/images/TODO.jpg" alt="TODO">
-      <figcaption>TODO</figcaption>
-    </figure>
+  <section id="sim-data">
+    <h2>Simulated data along two grounding axes</h2>
+    <p>
+      We generate about 1,500 simulated trajectories for each of four configurations, setting each
+      grounding axis independently. <strong>World grounding</strong> aligns the simulator with the real
+      system through camera calibration, scene registration and robot system identification.
+      <strong>Behavior grounding</strong> adapts the human demonstrations to new object poses and belt
+      speeds with MimicGen; ungrounded behavior is synthesized by grasp proposals and a motion planner.
+    </p>
+    <div class="sim-grid">
+      <span class="axis-corner" aria-hidden="true"></span>
+      <span class="axis-col">Motion-planned behavior<br><span class="axis-sub">ungrounded</span></span>
+      <span class="axis-col">Human-like behavior<br><span class="axis-sub">grounded</span></span>
+      <span class="axis-row">Grounded world</span>
+      <figure class="sim-cell">
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/sim-world.jpg" aria-label="Simulated trajectory, grounded world with motion-planned behavior">
+          <source src="static/videos/sim-world.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>World grounded</strong><br>
+          <a href="static/videos/sim-world-3views.mp4">All 3 camera views</a>
+        </figcaption>
+      </figure>
+      <figure class="sim-cell">
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/sim-grounded.jpg" aria-label="Simulated trajectory, grounded world with human-like behavior">
+          <source src="static/videos/sim-grounded.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          <span class="swatch tone-grounded"></span><strong>Fully grounded</strong><br>
+          <a href="static/videos/sim-grounded-3views.mp4">All 3 camera views</a>
+        </figcaption>
+      </figure>
+      <span class="axis-row">Ungrounded world</span>
+      <figure class="sim-cell">
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/sim-ungrounded.jpg" aria-label="Simulated trajectory, ungrounded world with motion-planned behavior">
+          <source src="static/videos/sim-ungrounded.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>Ungrounded</strong><br>
+          <a href="static/videos/sim-ungrounded-3views.mp4">All 3 camera views</a>
+        </figcaption>
+      </figure>
+      <figure class="sim-cell">
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/sim-behavior.jpg" aria-label="Simulated trajectory, ungrounded world with human-like behavior">
+          <source src="static/videos/sim-behavior.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>Behavior grounded</strong><br>
+          <a href="static/videos/sim-behavior-3views.mp4">All 3 camera views</a>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="sim-note">
+      Head-camera view at 1× speed, one example trajectory per dataset. All four datasets use the same
+      renderer (Isaac Sim RTX); world grounding changes calibration and dynamics (camera intrinsics and
+      blur, scene and robot poses, controller response), not the rendering style. Differences in world
+      grounding are therefore hard to see in these clips, while differences in behavior show in the motion.
+    </p>
   </section>
-  -->
+
+  <section id="results">
+    <h2>Grounded co-training raises success from 52% to 86%</h2>
+    <p>
+      Each co-trained policy uses the same 100 real demonstrations plus about 1,500 simulated
+      trajectories, differing only in how the simulated data is grounded. Each policy is evaluated
+      over 50 real-world trials: 24 nominal and 26 under shifts in lighting, belt speed or object
+      that the real demonstrations do not cover. Choose a condition to compare.
+    </p>
+
+    <div id="scratch-card" class="chart-card">
+      <p class="chart-title">Success rate, 500M flow-matching policy trained from scratch</p>
+      <div class="segmented" role="radiogroup" aria-label="Evaluation condition"></div>
+      <div class="bar-chart">
+        <div class="chart-tooltip" hidden></div>
+      </div>
+      <div class="chart-axis" aria-hidden="true">
+        <span class="ticks"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></span>
+      </div>
+      <p class="chart-takeaway" aria-live="polite"></p>
+    </div>
+
+    <h3>Example rollouts</h3>
+    <p class="rollouts-intro">
+      One real-world rollout per policy and condition, seen from the head camera at 1&times; speed. Each
+      clip shows the policy&rsquo;s typical outcome: a success where it succeeded in at least half of its
+      trials, a failure otherwise. Choose a condition above to switch clips; &ldquo;All trials&rdquo; shows
+      a random condition for each policy.
+    </p>
+    <div class="rollouts">
+      <figure data-policy="real">
+        <video muted loop playsinline preload="none"></video>
+        <figcaption>
+          <span class="swatch tone-real"></span><strong>Real only</strong><br>
+          <span class="clip-cond"></span><br>
+          <span class="clip-outcome"></span>
+        </figcaption>
+      </figure>
+      <figure data-policy="ungr">
+        <video muted loop playsinline preload="none"></video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>Ungrounded</strong><br>
+          <span class="clip-cond"></span><br>
+          <span class="clip-outcome"></span>
+        </figcaption>
+      </figure>
+      <figure data-policy="behavior">
+        <video muted loop playsinline preload="none"></video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>Behavior grounded</strong><br>
+          <span class="clip-cond"></span><br>
+          <span class="clip-outcome"></span>
+        </figcaption>
+      </figure>
+      <figure data-policy="world">
+        <video muted loop playsinline preload="none"></video>
+        <figcaption>
+          <span class="swatch tone-mid"></span><strong>World grounded</strong><br>
+          <span class="clip-cond"></span><br>
+          <span class="clip-outcome"></span>
+        </figcaption>
+      </figure>
+      <figure data-policy="full">
+        <video muted loop playsinline preload="none"></video>
+        <figcaption>
+          <span class="swatch tone-grounded"></span><strong>Fully grounded</strong><br>
+          <span class="clip-cond"></span><br>
+          <span class="clip-outcome"></span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <h3>Grounded simulation still helps foundation models</h3>
+    <p>
+      Post-training pre-trained models shows the same pattern. Going from 100 to 1,000 real
+      demonstrations helps a lot, so real data is still a bottleneck. With 100 real demonstrations
+      plus fully grounded simulation, our 2B model reaches 90%, at least matching 1,000 real
+      demonstrations.
+    </p>
+    <div id="fm-card" class="chart-card wide-labels">
+      <p class="chart-title">Success rate, post-trained foundation models</p>
+      <div class="segmented" role="radiogroup" aria-label="Evaluation condition"></div>
+      <div class="bar-chart">
+        <div class="chart-tooltip" hidden></div>
+      </div>
+      <div class="chart-axis" aria-hidden="true">
+        <span class="ticks"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></span>
+      </div>
+      <p class="chart-takeaway" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="switching">
+    <h2>Switching between real-like and sim-like behaviors</h2>
+    <p>
+      Co-trained policies behave like a mixture of real-derived and simulation-derived policies:
+      they imitate the real demonstrations in states those cover, and fall back on simulated
+      behavior elsewhere. Rollouts in our main conditions rarely leave the real data, so to make
+      the switch easier to see we also trained a diagnostic policy with only 10 real demonstrations
+      and 1,500 fully ungrounded simulated trajectories. It grasps with a two-finger pinch and moves
+      like the motion-planned simulation data (left). The latent-space view (right) follows a
+      separate real rollout, showing how a policy&rsquo;s observations can move from the real region
+      toward the simulated one.
+    </p>
+    <div class="media-pair switch-grid">
+      <figure class="switch-pair">
+        <div class="switch-frame">
+          <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/switch-d100-d10.jpg"
+                 aria-label="Two rollouts: top, policy with 100 real demonstrations; bottom, policy with 10 real demonstrations">
+            <source src="static/videos/switch-d100-d10.mp4" type="video/mp4">
+          </video>
+          <span class="switch-tag" style="top:8px">100 real demos + ungrounded sim</span>
+          <span class="switch-tag" style="top:calc(50% + 8px)">10 real demos + ungrounded sim</span>
+        </div>
+        <figcaption>Real-world rollouts at 1&times; speed. With 10 real demonstrations the policy picks with a two-finger pinch, as in the motion-planned simulation data.</figcaption>
+      </figure>
+      <figure class="switch-latent">
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/switch-latent.jpg"
+               aria-label="Latent-space view of a rollout trajectory with nearest real and simulated frames">
+          <source src="static/videos/switch-latent.mp4" type="video/mp4">
+        </video>
+        <figcaption>A separate real rollout (not the one shown on the left): observation embeddings (PCA) along its path (black, orange dot = current frame) against real demonstrations (blue) and simulated demonstrations (red), with the nearest real and simulated frames.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="world-grounding">
+    <h2>Better world grounding reduces the need for behavior grounding</h2>
+    <p>
+      Behavior grounding helped by a similar amount under both world-grounding configurations,
+      suggesting our calibration-based world grounding was not yet accurate enough. We therefore
+      improved its visual fidelity with CRAFT-inspired video translation. Translated simulated
+      observations overlap the real ones in latent space, while the RTX-rendered observations form a
+      separate cluster. Co-trained with 25 real and 75 simulated trajectories, policies using
+      behavior-grounded and behavior-ungrounded data both succeeded in 17 of 24 trials, on par with
+      our policy trained on 100 real trajectories (16/24).
+    </p>
+    <div class="media-pair craft-grid">
+      <figure>
+        <img class="plot-img" src="static/images/visual-gap.jpg"
+             alt="Observation-embedding projection: Grounded-CRAFT points overlap the Real points, while Grounded-RTX Render points form a separate cluster.">
+        <figcaption>Observation-embedding projection of real, RTX-rendered and CRAFT-translated observations.</figcaption>
+      </figure>
+      <figure>
+        <video data-lazy muted loop playsinline preload="none" poster="static/images/posters/craft-vs-real.jpg"
+               aria-label="CRAFT-translated simulated views above the corresponding real camera views">
+          <source src="static/videos/craft-vs-real.mp4" type="video/mp4">
+        </video>
+        <figcaption>Translated simulation (top row) and real camera views (bottom row) for the head, left-wrist and right-wrist cameras.</figcaption>
+      </figure>
+    </div>
+  </section>
 
   <section id="bibtex">
     <h2>BibTeX</h2>
@@ -123,6 +330,8 @@
   </div>
 </footer>
 
+<script src="static/js/results.js"></script>
+<script src="static/js/lazy-video.js"></script>
 <script>
   document.querySelector('.bibtex .copy').addEventListener('click', function (e) {
     var btn = e.currentTarget;

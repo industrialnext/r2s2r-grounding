@@ -10,7 +10,20 @@ Plain static HTML — no build step.
 - `static/css/style.css` — styles
 - `static/images/fig1.jpg` — Fig. 1 overview (also used as social preview)
 - `static/arxiv-paper.pdf` — paper PDF linked from the header
-- `static/videos/` — empty for now
+- `static/js/results.js` — interactive results chart (500M policy, data from Table 2)
+- `static/js/lazy-video.js` — plays muted loops only while on screen
+- `static/videos/rollout-<policy>-<condition>.mp4` — one real rollout per policy × condition (from `taro_policy_conditions_20_table2_20260930`; success if the Table 2 rate is ≥ 50%, failure otherwise), switched by the chart's condition selector
+- `static/videos/sim-<config>.mp4` — simulated trajectory per grounding configuration, head view (`*-3views.mp4` = full 3-camera strip)
+- `static/videos/hero-loop.mp4` — background loop behind the title (from `demo_loop.mov`)
+- `static/videos/switch-d100-d10.mp4` — D_100 (top) and D_10 (bottom) rollouts stacked; `switch-latent.mp4` — latent-space screen recording
+- `static/videos/craft-vs-real.mp4` and `static/images/visual-gap.jpg` — CRAFT-translated vs. real views and the observation-embedding plot
+- Posters for all clips are in `static/images/posters/`
+
+Rollout clips were made from the head-camera exports with (sim clips: crop the head panel of the 3-view export instead):
+
+```
+ffmpeg -i in.mp4 -an -vf "crop=512:510:0:30,scale=512:512" -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 26 -preset slow -movflags +faststart rollout-<name>.mp4
+```
 
 Preview locally: `python3 -m http.server` then open http://localhost:8000
 
