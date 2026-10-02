@@ -9,7 +9,6 @@ Plain static HTML — no build step.
 - `index.html` — page content (search for `TODO`)
 - `static/css/style.css` — styles
 - `static/images/fig1.jpg` — Fig. 1 overview (also used as social preview)
-- `static/arxiv-paper.pdf` — paper PDF linked from the header
 - `static/js/results.js` — interactive results chart (500M policy, data from Table 2)
 - `static/js/lazy-video.js` — plays muted loops only while on screen
 - `static/videos/rollout-<policy>-<condition>.mp4` — one real rollout per policy × condition (from `taro_policy_conditions_20_table2_20260930`; success if the Table 2 rate is ≥ 50%, failure otherwise), switched by the chart's condition selector
@@ -31,7 +30,7 @@ To add a paper figure, render the PDF with `qlmanage -t -s 3000 -o . figure.pdf`
 
 ## Later
 
-- [ ] Swap the "arXiv (coming soon)" pill for the real `arxiv.org/abs/...` link, and add `eprint` to the BibTeX
+- [x] arXiv link (https://arxiv.org/abs/2610.00821) and `eprint` in the BibTeX
 - [ ] Results figures (commented-out `#results` section in `index.html`)
 - [x] Video (YouTube embed, unlisted: https://youtu.be/5Gvt4kh4AHc)
 

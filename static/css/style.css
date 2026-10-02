@@ -93,13 +93,6 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
 }
 .btn:hover { opacity: 0.85; text-decoration: none; }
-.btn.pending {
-  background: var(--surface);
-  color: var(--muted);
-  border: 1px solid var(--border);
-  cursor: default;
-}
-.btn.pending:hover { opacity: 1; }
 
 /* Sections */
 section { padding: 28px 0; }
@@ -408,11 +401,6 @@ h3 { margin: 32px 0 8px; font-size: 1.15rem; font-weight: 600; }
 .hero.has-video .affiliations { color: rgba(255, 255, 255, 0.78); }
 .hero.has-video .affiliations a { color: #ffffff; text-decoration: underline; text-underline-offset: 2px; }
 .hero.has-video .btn { background: #ffffff; color: #111215; }
-.hero.has-video .btn.pending {
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 @media (prefers-reduced-motion: reduce) {
   .hero-bg { display: none; }
   .hero.has-video { background: #0d0e10 url("../images/posters/hero-loop.jpg") center 25% / cover no-repeat; }
