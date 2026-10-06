@@ -37,3 +37,7 @@ To add a paper figure, render the PDF with `qlmanage -t -s 3000 -o . figure.pdf`
 ## Deployment
 
 GitHub Pages: repo **Settings → Pages → Build and deployment → Source: Deploy from a branch**, branch `main`, folder `/ (root)`.
+
+## Analytics
+
+Microsoft Clarity is loaded asynchronously from the `<head>` in `index.html` for project `yt8r4rlxrz`. Authorized project members can view traffic, recordings, and attention heatmaps in the [Clarity dashboard](https://clarity.microsoft.com/projects/view/yt8r4rlxrz/dashboard). Data collection starts after deployment; historical visits are not backfilled.
